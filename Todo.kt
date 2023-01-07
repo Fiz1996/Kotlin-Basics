@@ -5,27 +5,28 @@ package com.example.tuwaiqfirstprojectforandroid
 2) Print specific task, One parameter of type Int
 3) Add task, Parameter of type Task (Method)
 4) Remove task, Parameter of type task (Method)
-4) Change task, Parameter of type Task (Method)
-5) The Class has an array property called tasks of type (Task) which has a private set.
+5) Change task, Parameter of type Task (Method)
+6) The Class has an array property called tasks of type (Task) which has a private set.
  */
 
 class Todo() {
 
-      var task: ArrayList<Task> = ArrayList()
+      var tasks: ArrayList<Task> = ArrayList()
           private set
 
     // 1) Show all Tasks
     fun showAllTasks() {
-        for(task in this.task) {
+        for(task in this.tasks) {
             println(task)
+
         }
     }
 
     // 2) print specific task
     fun showTask(task:Int) {
 
-        if(this.task.size> task) {
-            println(this.task[task])
+        if(this.tasks.size> task) {
+            println(this.tasks[task])
         }
 
         else
@@ -36,13 +37,22 @@ class Todo() {
     // 3) add task
     fun addTask(task:Task) {
 
-       this.task.add(task)
+       this.tasks.add(task)
     }
 
 
     // 4) remove specific task
     fun removeTask(x:Task) {
-        this.task.remove(x)
+        this.tasks.remove(x)
+
+    }
+
+    // 5) change parameter of type task
+    fun changeParameter( task: Task) {
+        for (index in 0 until this.tasks.size) {
+            this.tasks[index].isCompleted=task.isCompleted
+            this.tasks[index].note=task.note
+        }
 
     }
 }
@@ -64,5 +74,9 @@ fun main() {
     f.addTask(task2)
     f.showAllTasks()
     f.showTask(0)
+     task2 = Task(id="111",name = "111",note = "11111",false)
+    f.changeParameter(task2)
+    f.showAllTasks()
+
 
 }
