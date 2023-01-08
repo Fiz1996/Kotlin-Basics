@@ -23,14 +23,17 @@ class Todo() {
     }
 
     // 2) print specific task
-    fun showTask(task:Int) {
-
-        if(this.tasks.size> task) {
-            println(this.tasks[task])
+    fun showTask(task:Task) {
+        for(index in 0 until  this.tasks.size) {
+            if(this.tasks.contains(task)) {
+                println(this.tasks[index])
+            }
+            else
+                println(" the element is not found in the array ")
         }
 
-        else
-            println(" the element is not found in the array ")
+
+
 
 
     }
@@ -48,11 +51,8 @@ class Todo() {
     }
 
     // 5) change parameter of type task
-    fun changeParameter( task: Task) {
-        for (index in 0 until this.tasks.size) {
-            this.tasks[index].isCompleted=task.isCompleted
-            this.tasks[index].note=task.note
-        }
+    fun changeParameter( task: Int) {
+        this.tasks[task].isCompleted = true
 
     }
 }
@@ -65,17 +65,16 @@ data class Task (
 )
 
 fun main() {
-    var task = Task(id="ffff",name = "ffff",note = "testing",true)
+    var task = Task(id="ffff",name = "ffff",note = "testing",false)
     var f = Todo()
-    var task2 = Task(id="111",name = "111",note = "testing",true)
+    var task2 = Task(id="111",name = "111",note = "testing",false)
     f.addTask(task)
     f.showAllTasks()
     f.removeTask(task)
     f.addTask(task2)
     f.showAllTasks()
-    f.showTask(0)
-     task2 = Task(id="111",name = "111",note = "11111",false)
-    f.changeParameter(task2)
+    f.showTask(task2)
+    f.changeParameter(0)
     f.showAllTasks()
 
 
